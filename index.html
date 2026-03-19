@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRD — আচার ও শুঁটকি অনলাইন বিজনেস</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #1a3d2b;
+    --green-mid: #2d6a4f;
+    --green-accent: #40916c;
+    --green-light: #74c69d;
+    --green-pale: #d8f3dc;
+    --amber: #f4a261;
+    --amber-dark: #e76f51;
+    --cream: #fefae0;
+    --warm-white: #fffdf7;
+    --text-dark: #1b1b1b;
+    --text-mid: #3d3d3a;
+    --text-muted: #6b7280;
+    --border: rgba(45,106,79,0.15);
+    --shadow: rgba(26,61,43,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Hind Siliguri', sans-serif;
+    background: var(--warm-white);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background: var(--green-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(64,145,108,0.25) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(244,162,97,0.12) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    background: rgba(116,198,157,0.15);
+    border: 1px solid rgba(116,198,157,0.3);
+    color: var(--green-light);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 36px;
+  }
+
+  .cover-logo {
+    font-size: 80px;
+    margin-bottom: 24px;
+    filter: drop-shadow(0 4px 20px rgba(116,198,157,0.4));
+  }
+
+  .cover h1 {
+    font-family: 'Tiro Bangla', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    color: #fff;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+
+  .cover h1 span {
+    color: var(--amber);
+  }
+
+  .cover .subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.55);
+    max-width: 520px;
+    margin: 0 auto 48px;
+    font-weight: 300;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .cover-meta-item {
+    text-align: center;
+  }
+
+  .cover-meta-item .label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 4px;
+  }
+
+  .cover-meta-item .value {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 500;
+  }
+
+  .cover-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.3);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .cover-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:0.8} }
+
+  /* ── NAV ── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,253,247,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .nav a {
+    text-decoration: none;
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 16px 18px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+
+  .nav a:hover { color: var(--green-mid); border-bottom-color: var(--green-light); }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 70px 0 50px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-number {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green-accent);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Tiro Bangla', serif;
+    font-size: clamp(24px, 4vw, 36px);
+    color: var(--green-dark);
+    margin-bottom: 28px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .section-intro {
+    font-size: 17px;
+    color: var(--text-mid);
+    max-width: 700px;
+    line-height: 1.9;
+    margin-bottom: 40px;
+  }
+
+  /* ── EXEC SUMMARY CARDS ── */
+  .exec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .exec-card {
+    background: var(--green-pale);
+    border: 1px solid rgba(64,145,108,0.2);
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: center;
+  }
+
+  .exec-card .icon { font-size: 28px; margin-bottom: 10px; }
+  .exec-card .num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--green-dark);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .exec-card .desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* ── PROBLEM STATEMENT ── */
+  .problem-box {
+    background: linear-gradient(135deg, #fff8f0, #fff3e8);
+    border: 1px solid rgba(231,111,81,0.2);
+    border-left: 4px solid var(--amber-dark);
+    border-radius: 0 12px 12px 0;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+  }
+
+  .problem-box h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--amber-dark);
+    margin-bottom: 12px;
+  }
+
+  .problem-box p {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.85;
+  }
+
+  /* ── MAP ── */
+  .map-container {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+
+  .map-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green-dark);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .bd-map {
+    width: 100%;
+    max-width: 600px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* ── TWO COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+  .info-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 22px;
+  }
+
+  .info-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--green-dark);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .info-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .info-card ul li {
+    font-size: 14px;
+    color: var(--text-mid);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .info-card ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--green-accent);
+    font-weight: 700;
+  }
+
+  /* ── PRODUCT TABLE ── */
+  .product-phases {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .phase-row {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    align-items: center;
+    gap: 20px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    transition: box-shadow 0.2s;
+  }
+
+  .phase-row:hover { box-shadow: 0 4px 20px var(--shadow); }
+
+  .phase-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .phase-badge.p1 { background: var(--green-pale); color: var(--green-dark); }
+  .phase-badge.p2 { background: #fef3c7; color: #92400e; }
+  .phase-badge.p3 { background: #fce7f3; color: #9d174d; }
+
+  .phase-products {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  .phase-products strong {
+    display: block;
+    color: var(--text-dark);
+    font-size: 15px;
+    margin-bottom: 3px;
+  }
+
+  .phase-timeline {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* ── FEATURES GRID ── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .feature-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px var(--shadow);
+  }
+
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--green-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  .feature-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--green-dark);
+    margin-bottom: 8px;
+  }
+
+  .feature-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ── TECH STACK ── */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .tech-item {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .tech-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .tech-dot.frontend { background: #3b82f6; }
+  .tech-dot.backend  { background: #8b5cf6; }
+  .tech-dot.payment  { background: var(--amber); }
+  .tech-dot.delivery { background: var(--green-accent); }
+
+  .tech-item .tech-label { font-size: 13px; color: var(--text-mid); font-weight: 500; }
+  .tech-item .tech-role  { font-size: 11px; color: var(--text-muted); }
+
+  /* ── JOURNEY ── */
+  .journey {
+    display: flex;
+    gap: 0;
+    margin-bottom: 40px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .journey-step {
+    flex: 1;
+    min-width: 130px;
+    text-align: center;
+    position: relative;
+    padding: 0 8px;
+  }
+
+  .journey-step::after {
+    content: '';
+    position: absolute;
+    top: 22px;
+    right: -1px;
+    width: 50%;
+    height: 2px;
+    background: var(--border);
+  }
+
+  .journey-step::before {
+    content: '';
+    position: absolute;
+    top: 22px;
+    left: -1px;
+    width: 50%;
+    height: 2px;
+    background: var(--border);
+  }
+
+  .journey-step:first-child::before,
+  .journey-step:last-child::after { display: none; }
+
+  .journey-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--green-pale);
+    border: 2px solid var(--green-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin: 0 auto 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .journey-step h4 { font-size: 13px; font-weight: 600; color: var(--green-dark); margin-bottom: 4px; }
+  .journey-step p  { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ── REVENUE MODEL ── */
+  .revenue-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 700px) { .revenue-grid { grid-template-columns: 1fr; } }
+
+  .rev-card {
+    border-radius: 14px;
+    padding: 24px 20px;
+    border: 1px solid transparent;
+  }
+
+  .rev-card.primary   { background: var(--green-dark); color: #fff; }
+  .rev-card.secondary { background: var(--cream); border-color: var(--border); }
+  .rev-card.tertiary  { background: #fff8f0; border-color: rgba(244,162,97,0.25); }
+
+  .rev-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .rev-card p  { font-size: 13px; opacity: 0.75; line-height: 1.65; }
+  .rev-card .rev-icon { font-size: 24px; margin-bottom: 12px; }
+
+  /* ── RISKS ── */
+  .risk-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+
+  .risk-table th {
+    text-align: left;
+    padding: 12px 16px;
+    background: var(--green-pale);
+    color: var(--green-dark);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .risk-table th:first-child { border-radius: 8px 0 0 0; }
+  .risk-table th:last-child  { border-radius: 0 8px 0 0; }
+
+  .risk-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-mid);
+    vertical-align: top;
+  }
+
+  .risk-level {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .risk-level.high   { background: #fee2e2; color: #991b1b; }
+  .risk-level.medium { background: #fef3c7; color: #92400e; }
+  .risk-level.low    { background: var(--green-pale); color: var(--green-dark); }
+
+  /* ── ROADMAP ── */
+  .roadmap {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 32px;
+  }
+
+  .roadmap::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--green-accent), var(--green-light), rgba(116,198,157,0.2));
+  }
+
+  .roadmap-item {
+    position: relative;
+    margin-bottom: 32px;
+  }
+
+  .roadmap-dot {
+    position: absolute;
+    left: -36px;
+    top: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--green-accent);
+    background: var(--warm-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--green-accent);
+  }
+
+  .roadmap-item h3 { font-size: 16px; font-weight: 600; color: var(--green-dark); margin-bottom: 4px; }
+  .roadmap-item .phase-tag {
+    display: inline-block;
+    font-size: 11px;
+    color: var(--green-accent);
+    background: var(--green-pale);
+    padding: 2px 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .roadmap-item p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--green-dark);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 40px;
+    font-size: 13px;
+  }
+
+  .footer strong { color: rgba(255,255,255,0.8); }
+
+  /* ── QUOTE ── */
+  .quote-block {
+    background: var(--green-pale);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    border-left: 4px solid var(--green-accent);
+  }
+
+  .quote-block p {
+    font-family: 'Tiro Bangla', serif;
+    font-size: 18px;
+    color: var(--green-dark);
+    line-height: 1.9;
+    font-style: italic;
+  }
+
+  /* ── KPI ROW ── */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .kpi-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .kpi-card .kpi-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--green-dark);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .kpi-card .kpi-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .kpi-card .kpi-icon { font-size: 20px; margin-bottom: 8px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .main { padding: 0 20px 60px; }
+    .nav  { padding: 0 12px; }
+    .phase-row { grid-template-columns: 1fr; }
+    .phase-timeline { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">Business Requirements Document</div>
+  <div class="cover-logo">🥫</div>
+  <h1>আচার ও শুঁটকি<br><span>অনলাইন বিজনেস</span></h1>
+  <p class="subtitle">চট্টগ্রামের ঐতিহ্যবাহী স্বাদ, সারা বাংলাদেশে পৌঁছে দেওয়ার পরিকল্পনা</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><div class="label">ডকুমেন্ট ভার্সন</div><div class="value">v1.0</div></div>
+    <div class="cover-meta-item"><div class="label">তারিখ</div><div class="value">মার্চ ২০২৬</div></div>
+    <div class="cover-meta-item"><div class="label">ক্যাটাগরি</div><div class="value">E-Commerce / Food</div></div>
+    <div class="cover-meta-item"><div class="label">মার্কেট</div><div class="value">বাংলাদেশ</div></div>
+  </div>
+  <div class="cover-scroll"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#summary">সারসংক্ষেপ</a>
+    <a href="#problem">সমস্যা</a>
+    <a href="#market">মার্কেট</a>
+    <a href="#product">পণ্য</a>
+    <a href="#features">ওয়েবসাইট</a>
+    <a href="#journey">কাস্টমার জার্নি</a>
+    <a href="#revenue">রেভিনিউ</a>
+    <a href="#roadmap">রোডম্যাপ</a>
+    <a href="#risks">ঝুঁকি</a>
+    <a href="#kpi">KPI</a>
+  </div>
+</nav>
+
+<div class="main">
+
+  <!-- 1. EXECUTIVE SUMMARY -->
+  <section class="section" id="summary">
+    <div class="section-number">সেকশন ০১</div>
+    <h2 class="section-title">এক্সিকিউটিভ সারসংক্ষেপ</h2>
+    <p class="section-intro">
+      এই পরিকল্পনার লক্ষ্য হলো চট্টগ্রাম ও কক্সবাজারের বিখ্যাত আচার ও শুঁটকি পণ্য একটি ই-কমার্স ওয়েবসাইটের মাধ্যমে সারা বাংলাদেশে বিক্রয় করা। বাংলাদেশের অধিকাংশ জেলায় মানসম্পন্ন আচার ও শুঁটকির সহজলভ্যতা নেই — এই শূন্যস্থান পূরণ করাই আমাদের মূল ব্যবসায়িক সুযোগ।
+    </p>
+    <div class="exec-grid">
+      <div class="exec-card">
+        <div class="icon">🗺️</div>
+        <div class="num">৬৪</div>
+        <div class="desc">জেলায় ডেলিভারি লক্ষ্যমাত্রা</div>
+      </div>
+      <div class="exec-card">
+        <div class="icon">🥒</div>
+        <div class="num">৩০+</div>
+        <div class="desc">আচারের ভ্যারাইটি (ফেজ ১)</div>
+      </div>
+      <div class="exec-card">
+        <div class="icon">🐟</div>
+        <div class="num">২০+</div>
+        <div class="desc">শুঁটকির ধরন (ফেজ ১)</div>
+      </div>
+      <div class="exec-card">
+        <div class="icon">🚀</div>
+        <div class="num">৬ মাস</div>
+        <div class="desc">প্রথম ফেজ লঞ্চ টার্গেট</div>
+      </div>
+    </div>
+    <div class="quote-block">
+      <p>"চট্টগ্রামের মানুষ যে আচার ও শুঁটকির স্বাদে বড় হয়েছে — সেই একই স্বাদ রাজশাহী, সিলেট বা ময়মনসিংহের মানুষও পাওয়ার অধিকার রাখে।"</p>
+    </div>
+  </section>
+
+  <!-- 2. PROBLEM STATEMENT -->
+  <section class="section" id="problem">
+    <div class="section-number">সেকশন ০২</div>
+    <h2 class="section-title">সমস্যা ও সুযোগ</h2>
+    <p class="section-intro">
+      বাংলাদেশের বাজারে একটি স্পষ্ট সমস্যা বিদ্যমান — মানসম্পন্ন আচার ও শুঁটকি পণ্য শুধুমাত্র নির্দিষ্ট অঞ্চলে সীমাবদ্ধ। এটি একটি বড় বিজনেস অপরচুনিটি।
+    </p>
+
+    <div class="problem-box">
+      <h3>🚨 মূল সমস্যা</h3>
+      <p>চট্টগ্রাম ও কক্সবাজারের বাইরের জেলাগুলোতে ভালো মানের আচার ও শুঁটকি পাওয়া কঠিন। স্থানীয় বাজারে যা পাওয়া যায় তা অনেক সময় ভেজাল বা মানহীন। অনলাইনে অর্ডার করলেও বিশ্বস্ত কোনো নির্দিষ্ট জায়গা নেই যেখান থেকে নিশ্চিন্তে কেনা যায়।</p>
+    </div>
+
+    <div class="two-col">
+      <div class="info-card">
+        <h3>😓 গ্রাহকের ব্যথা</h3>
+        <ul>
+          <li>ঢাকা বা অন্য জেলায় থাকলে চট্টগ্রামের আচার-শুঁটকি মিস করেন</li>
+          <li>বাজারে প্যাকেটজাত পণ্যে ভেজালের আশঙ্কা থাকে</li>
+          <li>বিশ্বস্ত সোর্স না থাকায় কেনার আগে দ্বিধায় পড়তে হয়</li>
+          <li>প্রবাসী বাংলাদেশিরা দেশ থেকে আনাতে পারেন না সহজে</li>
+          <li>হোম ডেলিভারির সুবিধা নেই বেশিরভাগ ক্ষেত্রে</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>✅ আমাদের সমাধান</h3>
+        <ul>
+          <li>সরাসরি উৎস থেকে সংগ্রহ করা খাঁটি পণ্য</li>
+          <li>অনলাইনে অর্ডার করে ঘরে বসে পাওয়ার সুবিধা</li>
+          <li>সারাদেশে নির্ভরযোগ্য কুরিয়ার ডেলিভারি</li>
+          <li>স্বচ্ছ মূল্য ও উপাদানের তালিকা</li>
+          <li>নিজের পছন্দমতো অর্ডার ও উপহার প্যাকেজিং অপশন</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="problem-box" style="background: linear-gradient(135deg, #f0f4ff, #eaf0ff); border-color: rgba(99,102,241,0.2); border-left-color: #6366f1;">
+      <h3 style="color: #4338ca;">🔒 সমস্যা ৩ — Trust Issue (New Brand)</h3>
+      <p>মানুষ খাবারে সহজে বিশ্বাস করে না।</p>
+      <div style="margin-top: 14px;">
+        <p style="font-size: 14px; font-weight: 600; color: #4338ca; margin-bottom: 8px;">👉 সমাধান:</p>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 6px; padding-left: 8px;">
+          <li style="font-size: 14px; color: var(--text-mid); padding-left: 18px; position: relative;">
+            <span style="position: absolute; left: 0; color: #6366f1; font-weight: 700;">›</span>
+            ভিডিও প্রমাণ (প্রক্রিয়াকরণ ও প্যাকিং দেখানো)
+          </li>
+          <li style="font-size: 14px; color: var(--text-mid); padding-left: 18px; position: relative;">
+            <span style="position: absolute; left: 0; color: #6366f1; font-weight: 700;">›</span>
+            কাস্টমার রিভিউ ও ফিডব্যাক প্রকাশ করা
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. MARKET ANALYSIS -->
+  <section class="section" id="market">
+    <div class="section-number">সেকশন ০৩</div>
+    <h2 class="section-title">মার্কেট অ্যানালাইসিস</h2>
+    <p class="section-intro">
+      বাংলাদেশের ৬৪ জেলার মধ্যে চট্টগ্রাম ও কক্সবাজার আচার ও শুঁটকির প্রধান উৎস। বাকি ৬২ জেলাই আমাদের সম্ভাব্য বাজার।
+    </p>
+
+    <div class="map-container">
+      <div class="map-title">🗺️ টার্গেট মার্কেট — বাংলাদেশের বিভাগভিত্তিক সুযোগ</div>
+      <svg class="bd-map" viewBox="0 0 540 480" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <!-- Bangladesh simplified shape -->
+        <!-- Rajshahi -->
+        <ellipse cx="160" cy="165" rx="68" ry="50" fill="#d8f3dc" stroke="#40916c" stroke-width="1"/>
+        <text x="160" y="160" text-anchor="middle" font-size="13" font-weight="600" fill="#1a3d2b" font-family="Hind Siliguri, sans-serif">রাজশাহী</text>
+        <text x="160" y="176" text-anchor="middle" font-size="11" fill="#2d6a4f" font-family="Hind Siliguri, sans-serif">বিভাগ</text>
+
+        <!-- Rangpur -->
+        <ellipse cx="165" cy="82" rx="62" ry="42" fill="#d8f3dc" stroke="#40916c" stroke-width="1"/>
+        <text x="165" y="77" text-anchor="middle" font-size="13" font-weight="600" fill="#1a3d2b" font-family="Hind Siliguri, sans-serif">রংপুর</text>
+        <text x="165" y="93" text-anchor="middle" font-size="11" fill="#2d6a4f" font-family="Hind Siliguri, sans-serif">বিভাগ</text>
+
+        <!-- Mymensingh -->
+        <ellipse cx="295" cy="120" rx="55" ry="42" fill="#d8f3dc" stroke="#40916c" stroke-width="1"/>
+        <text x="295" y="115" text-anchor="middle" font-size="12" font-weight="600" fill="#1a3d2b" font-family="Hind Siliguri, sans-serif">ময়মনসিংহ</text>
+        <text x="295" y="131" text-anchor="middle" font-size="11" fill="#2d6a4f" font-family="Hind Siliguri, sans-serif">বিভাগ</text>
+
+        <!-- Sylhet -->
+        <ellipse cx="390" cy="118" rx="55" ry="42" fill="#d8f3dc" stroke="#40916c" stroke-width="1"/>
+        <text x="390" y="113" text-anchor="middle" font-size="13" font-weight="600" fill="#1a3d2b" font-family="Hind Siliguri, sans-serif">সিলেট</text>
+        <text x="390" y="129" text-anchor="middle" font-size="11" fill="#2d6a4f" font-family="Hind Siliguri, sans-serif">বিভাগ</text>
+
+        <!-- Dhaka -->
+        <ellipse cx="280" cy="228" rx="65" ry="52" fill="#d8f3dc" stroke="#40916c" stroke-width="1.5"/>
+        <text x="280" y="222" text-anchor="middle" font-size="14" font-weight="700" fill="#1a3d2b" font-family="Hind Siliguri, sans-serif">ঢাকা</text>
+        <text x="280" y="238" text-anchor="middle" font-size="11" fill="#2d6a4f" font-family="Hind Siliguri, sans-serif">বিভাগ ★</text>
+
+        <!-- Khulna -->
+        <ellipse cx="155" cy="310" rx="70" ry="52" fill="#d8f3dc" stroke="#40916c" stroke-width="1"/>
+        <text x="155" y="305" text-anchor="middle" font-size="13" font-weight="600" fill="#1a3d2b" font-family="Hind Siliguri, sans-serif">খুলনা</text>
+        <text x="155" y="321" text-anchor="middle" font-size="11" fill="#2d6a4f" font-family="Hind Siliguri, sans-serif">বিভাগ</text>
+
+        <!-- Barisal -->
+        <ellipse cx="258" cy="340" rx="55" ry="42" fill="#d8f3dc" stroke="#40916c" stroke-width="1"/>
+        <text x="258" y="335" text-anchor="middle" font-size="13" font-weight="600" fill="#1a3d2b" font-family="Hind Siliguri, sans-serif">বরিশাল</text>
+        <text x="258" y="351" text-anchor="middle" font-size="11" fill="#2d6a4f" font-family="Hind Siliguri, sans-serif">বিভাগ</text>
+
+        <!-- Chittagong - SOURCE (highlighted) -->
+        <ellipse cx="400" cy="295" rx="80" ry="62" fill="#1a3d2b" stroke="#74c69d" stroke-width="2"/>
+        <text x="400" y="283" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="Hind Siliguri, sans-serif">চট্টগ্রাম</text>
+        <text x="400" y="299" text-anchor="middle" font-size="12" fill="#74c69d" font-family="Hind Siliguri, sans-serif">উৎপাদন কেন্দ্র</text>
+        <text x="400" y="315" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.65)" font-family="Hind Siliguri, sans-serif">+ কক্সবাজার</text>
+
+        <!-- Arrows FROM Chittagong TO others -->
+        <line x1="340" y1="268" x2="300" y2="245" stroke="#40916c" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr2)" opacity="0.7"/>
+        <line x1="335" y1="255" x2="210" y2="215" stroke="#40916c" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr2)" opacity="0.6"/>
+        <line x1="325" y1="245" x2="215" y2="155" stroke="#40916c" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr2)" opacity="0.5"/>
+        <line x1="360" y1="245" x2="310" y2="158" stroke="#40916c" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr2)" opacity="0.55"/>
+        <line x1="380" y1="238" x2="382" y2="155" stroke="#40916c" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr2)" opacity="0.55"/>
+        <line x1="350" y1="310" x2="288" y2="335" stroke="#40916c" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr2)" opacity="0.6"/>
+        <line x1="325" y1="316" x2="220" y2="310" stroke="#40916c" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr2)" opacity="0.55"/>
+
+        <!-- Cox's Bazar - small -->
+        <ellipse cx="405" cy="410" rx="50" ry="32" fill="#2d6a4f" stroke="#74c69d" stroke-width="1.5"/>
+        <text x="405" y="406" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Hind Siliguri, sans-serif">কক্সবাজার</text>
+        <text x="405" y="420" text-anchor="middle" font-size="10" fill="#d8f3dc" font-family="Hind Siliguri, sans-serif">শুঁটকি হাব</text>
+
+        <!-- Legend -->
+        <rect x="20" y="420" width="14" height="14" rx="3" fill="#1a3d2b"/>
+        <text x="40" y="432" font-size="11" fill="#3d3d3a" font-family="Hind Siliguri, sans-serif">উৎপাদন কেন্দ্র</text>
+        <rect x="20" y="440" width="14" height="14" rx="3" fill="#d8f3dc" stroke="#40916c" stroke-width="1"/>
+        <text x="40" y="452" font-size="11" fill="#3d3d3a" font-family="Hind Siliguri, sans-serif">টার্গেট মার্কেট</text>
+      </svg>
+    </div>
+
+    <div class="two-col">
+      <div class="info-card">
+        <h3>🎯 প্রাথমিক টার্গেট গ্রাহক</h3>
+        <ul>
+          <li>ঢাকায় বসবাসকারী চট্টগ্রামের মানুষ</li>
+          <li>খাদ্যরসিক এবং ঐতিহ্যবাহী খাবারের শখীন</li>
+          <li>হোম কুক ও গৃহিণীরা যারা মানসম্পন্ন উপাদান চান</li>
+          <li>অনলাইনে শপিং করতে অভ্যস্ত ২৫–৪৫ বছর বয়সীরা</li>
+          <li>কর্পোরেট গিফটিং ও উৎসব উপহারের জন্য</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>📊 মার্কেটের সুযোগ</h3>
+        <ul>
+          <li>বাংলাদেশে ই-কমার্স মার্কেট বার্ষিক ৩০%+ বাড়ছে</li>
+          <li>খাবার ডেলিভারি ও অনলাইন বাজারে ব্যাপক চাহিদা বাড়ছে</li>
+          <li>স্থানীয় খাদ্যপণ্যের অনলাইনে তেমন প্রতিযোগিতা নেই</li>
+          <li>সিজনাল চাহিদা (ঈদ, পূজা) অনেক বেশি</li>
+          <li>প্রবাসী বাংলাদেশিদের কাছে রপ্তানির সুযোগ</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. PRODUCT STRATEGY -->
+  <section class="section" id="product">
+    <div class="section-number">সেকশন ০৪</div>
+    <h2 class="section-title">পণ্য কৌশল ও ফেজ প্ল্যান</h2>
+    <p class="section-intro">
+      আমরা একটি ধাপে ধাপে পণ্য বিস্তার কৌশল অনুসরণ করব। প্রথমে আচার ও শুঁটকিতে মনোযোগ দিয়ে পরিচিতি তৈরি করব, তারপর পর্যায়ক্রমে সিজনাল অন্যান্য পণ্য যোগ করব।
+    </p>
+
+    <div class="product-phases">
+      <div class="phase-row">
+        <span class="phase-badge p1">ফেজ ১</span>
+        <div class="phase-products">
+          <strong>🥒 আচার ও 🐟 শুঁটকি — মূল পণ্য</strong>
+          আম আচার, জলপাই আচার, তেঁতুল আচার, মিক্সড আচার, চিংড়ি শুঁটকি, লইট্যা শুঁটকি, রূপচাঁদা শুঁটকি, ইলিশ শুঁটকি ও আরও অনেক ভ্যারাইটি।
+        </div>
+        <div class="phase-timeline">মাস ১–৬<br>লঞ্চ ফেজ</div>
+      </div>
+      <div class="phase-row">
+        <span class="phase-badge p2">ফেজ ২</span>
+        <div class="phase-products">
+          <strong>🌴 খেজুর ও বাদাম — সিজনাল সম্প্রসারণ</strong>
+          পরিচিতি তৈরির পরে ধীরে ধীরে সিজনাল পণ্য আনা হবে — খেজুর, ভাজা বাদাম, কাঁচা বাদাম, কাজুবাদাম ও মধু।
+        </div>
+        <div class="phase-timeline">মাস ৭–১২<br>গ্রোথ ফেজ</div>
+      </div>
+      <div class="phase-row">
+        <span class="phase-badge p3">ফেজ ৩</span>
+        <div class="phase-products">
+          <strong>🧂 মশলা ও হ্যান্ডিক্রাফট ফুড — বিস্তার</strong>
+          হাতে তৈরি মশলার গুঁড়া, ঘানিভাঙা সরিষার তেল, নারকেল তেল, কুটির শিল্পজাত খাদ্যপণ্য।
+        </div>
+        <div class="phase-timeline">বছর ২+<br>স্কেল ফেজ</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="info-card">
+        <h3>📦 প্যাকেজিং পরিকল্পনা</h3>
+        <ul>
+          <li>এয়ারটাইট, খাদ্যমান প্যাকেজিং</li>
+          <li>৩ সাইজ: ২৫০গ্রাম, ৫০০গ্রাম, ১কেজি</li>
+          <li>উপহার বাক্স (সিজনাল)</li>
+          <li>নিজস্ব স্টিকার ও উপাদানের তালিকা</li>
+          <li>পরিবেশবান্ধব মেটেরিয়াল ব্যবহার</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>🏭 সাপ্লাই চেইন</h3>
+        <ul>
+          <li>চট্টগ্রামের স্থানীয় উৎপাদকদের সাথে চুক্তি</li>
+          <li>কক্সবাজারের জেলেদের কাছ থেকে সরাসরি শুঁটকি</li>
+          <li>মৌসুমী স্টক সংগ্রহ ও প্রপার স্টোরেজ</li>
+          <li>কোয়ালিটি চেক ও ফুড সেফটি নিশ্চিত করা</li>
+          <li>ন্যায্যমূল্যে কৃষক/উৎপাদকদের সহায়তা</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. WEBSITE FEATURES -->
+  <section class="section" id="features">
+    <div class="section-number">সেকশন ০৫</div>
+    <h2 class="section-title">ওয়েবসাইট ও অ্যাপ ফিচার</h2>
+    <p class="section-intro">
+      একটি সহজ, বাংলা ভাষায় ই-কমার্স ওয়েবসাইট তৈরি করা হবে যেটা মোবাইলে ভালোভাবে কাজ করবে এবং ইন্টারনেটের গতি কম থাকলেও সমস্যা হবে না।
+    </p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🛒</div>
+        <h3>পণ্যের তালিকা</h3>
+        <p>বিভাগ অনুযায়ী ফিল্টার, অনুসন্ধান, পণ্যের ছবি ও বিস্তারিত বিবরণ সহ সম্পূর্ণ পণ্যতালিকা।</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💳</div>
+        <h3>পেমেন্ট ব্যবস্থা</h3>
+        <p>বিকাশ, নগদ, রকেট, কার্ড পেমেন্ট এবং ক্যাশ অন ডেলিভারি সাপোর্ট।</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📍</div>
+        <h3>ডেলিভারি অনুসরণ</h3>
+        <p>অর্ডার নিশ্চিতকরণ বার্তা, সরাসরি ট্র্যাকিং লিংক এবং ডেলিভারির অবস্থা জানানোর সুবিধা।</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⭐</div>
+        <h3>মতামত ও রেটিং</h3>
+        <p>ক্রেতারা রেটিং ও মতামত দিতে পারবেন। ছবি আপলোড করার সুবিধাও থাকবে।</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎁</div>
+        <h3>উপহার বাক্স</h3>
+        <p>পছন্দমতো উপহার বাক্স তৈরির সুবিধা, বার্তা কার্ড যুক্ত করা এবং সরাসরি উপহার পাঠানোর অপশন।</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>মোবাইল অ্যাপ (দ্বিতীয় ধাপে)</h3>
+        <p>অ্যান্ড্রয়েড ও আইওএস অ্যাপ যেখানে বিজ্ঞপ্তি, অফার ও আনুগত্য পয়েন্ট পাওয়া যাবে।</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3>ছাড় ও বিশেষ অফার</h3>
+        <p>ছাড়ের কোড, বেশি কিনলে ছাড়, প্রথম অর্ডারে সুবিধা এবং বন্ধুকে আনলে পুরস্কার।</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3>ক্রেতা সহায়তা</h3>
+        <p>হোয়াটসঅ্যাপ চ্যাট, ফোন হেল্পলাইন এবং সাধারণ জিজ্ঞাসার পেজ বাংলায়।</p>
+      </div>
+    </div>
+
+    <div class="info-card" style="margin-bottom: 24px;">
+      <h3>⚙️ টেকনোলজি স্ট্যাক</h3>
+      <div class="tech-grid" style="margin-top: 16px; margin-bottom: 0;">
+        <div class="tech-item"><span class="tech-dot frontend"></span><div><div class="tech-label">React / Next.js</div><div class="tech-role">Frontend</div></div></div>
+        <div class="tech-item"><span class="tech-dot backend"></span><div><div class="tech-label">Node.js / Laravel</div><div class="tech-role">Backend</div></div></div>
+        <div class="tech-item"><span class="tech-dot payment"></span><div><div class="tech-label">bKash API, SSLCommerz</div><div class="tech-role">Payment</div></div></div>
+        <div class="tech-item"><span class="tech-dot delivery"></span><div><div class="tech-label">Pathao / Steadfast</div><div class="tech-role">Delivery</div></div></div>
+        <div class="tech-item"><span class="tech-dot frontend"></span><div><div class="tech-label">AWS / DigitalOcean</div><div class="tech-role">Hosting</div></div></div>
+        <div class="tech-item"><span class="tech-dot backend"></span><div><div class="tech-label">MySQL / PostgreSQL</div><div class="tech-role">Database</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CUSTOMER JOURNEY -->
+  <section class="section" id="journey">
+    <div class="section-number">সেকশন ০৬</div>
+    <h2 class="section-title">কাস্টমার জার্নি</h2>
+    <p class="section-intro">
+      একজন গ্রাহক প্রথমবার আমাদের ওয়েবসাইটে আসা থেকে শুরু করে পণ্য হাতে পাওয়া পর্যন্ত সম্পূর্ণ অভিজ্ঞতা কেমন হবে।
+    </p>
+
+    <div class="journey">
+      <div class="journey-step">
+        <div class="journey-circle">👀</div>
+        <h4>আবিষ্কার</h4>
+        <p>ফেসবুক/ইনস্টাগ্রাম বিজ্ঞাপন বা মুখে মুখে</p>
+      </div>
+      <div class="journey-step">
+        <div class="journey-circle">🌐</div>
+        <h4>ভিজিট</h4>
+        <p>ওয়েবসাইটে প্রবেশ, পণ্য দেখা</p>
+      </div>
+      <div class="journey-step">
+        <div class="journey-circle">🛒</div>
+        <h4>কার্টে যোগ</h4>
+        <p>পছন্দের পণ্য কার্টে রাখা</p>
+      </div>
+      <div class="journey-step">
+        <div class="journey-circle">💳</div>
+        <h4>পেমেন্ট</h4>
+        <p>বিকাশ / ক্যাশ অন ডেলিভারি / কার্ড পেমেন্ট</p>
+      </div>
+      <div class="journey-step">
+        <div class="journey-circle">📦</div>
+        <h4>প্রসেসিং</h4>
+        <p>প্যাকেজিং ও কুরিয়ারে হ্যান্ডওভার</p>
+      </div>
+      <div class="journey-step">
+        <div class="journey-circle">🚚</div>
+        <h4>ডেলিভারি</h4>
+        <p>১–৩ দিনের মধ্যে ঘরে পৌঁছানো</p>
+      </div>
+      <div class="journey-step">
+        <div class="journey-circle">⭐</div>
+        <h4>রিভিউ</h4>
+        <p>অভিজ্ঞতা শেয়ার ও রিপিট অর্ডার</p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="info-card">
+        <h3>📱 মার্কেটিং চ্যানেল</h3>
+        <ul>
+          <li>ফেসবুক ও ইনস্টাগ্রাম বিজ্ঞাপন (মূল চ্যানেল)</li>
+          <li>ফেসবুক গ্রুপে পোস্ট (ফুড, রান্না গ্রুপ)</li>
+          <li>ইউটিউব ও টিকটক রেসিপি ভিডিও</li>
+          <li>ইনফ্লুয়েন্সার মার্কেটিং (ফুড ব্লগার)</li>
+          <li>গুগল সার্চ অপ্টিমাইজেশন — বাংলা কীওয়ার্ড</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>🤝 রিটেনশন স্ট্র্যাটেজি</h3>
+        <ul>
+          <li>লয়্যালটি পয়েন্ট সিস্টেম</li>
+          <li>নিয়মিত কাস্টমারদের জন্য বিশেষ ডিসকাউন্ট</li>
+          <li>মাসিক নিউজলেটার ও অফার বার্তা</li>
+          <li>রেফারেল বোনাস প্রোগ্রাম</li>
+          <li>সিজনাল প্যাকেজ ও ঈদ স্পেশাল অফার</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. REVENUE MODEL -->
+  <section class="section" id="revenue">
+    <div class="section-number">সেকশন ০৭</div>
+    <h2 class="section-title">রেভিনিউ মডেল</h2>
+    <p class="section-intro">
+      আমাদের আয়ের প্রধান উৎস হবে সরাসরি পণ্য বিক্রয়। ভবিষ্যতে অন্যান্য রেভিনিউ স্ট্রিম যোগ হবে।
+    </p>
+
+    <div class="revenue-grid">
+      <div class="rev-card primary">
+        <div class="rev-icon">🛍️</div>
+        <h3>ডায়রেক্ট সেলস</h3>
+        <p>ওয়েবসাইটে সরাসরি পণ্য বিক্রয়। প্রাথমিক পর্যায়ে মোট রেভিনিউর ৮০%+ আসবে এখান থেকে।</p>
+      </div>
+      <div class="rev-card secondary">
+        <div class="rev-icon">📦</div>
+        <h3>সাবস্ক্রিপশন বক্স</h3>
+        <p>মাসিক "আচার-শুঁটকি বক্স" সাবস্ক্রিপশন। প্রতি মাসে নতুন ভ্যারাইটি পাঠানো হবে।</p>
+      </div>
+      <div class="rev-card tertiary">
+        <div class="rev-icon">🏢</div>
+        <h3>🏢 পাইকারি ও প্রাতিষ্ঠানিক বিক্রয়</h3>
+        <p>রেস্টুরেন্ট, ক্যাটারিং সার্ভিস ও কর্পোরেট অর্ডারের জন্য বিশেষ মূল্য ও প্যাকেজ।</p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="info-card">
+        <h3>💰 প্রাইসিং স্ট্র্যাটেজি</h3>
+        <ul>
+          <li>মার্কেট রেটের চেয়ে ১০-২০% প্রিমিয়াম (কোয়ালিটির জন্য)</li>
+          <li>বাল্ক অর্ডারে ১০-১৫% ডিসকাউন্ট</li>
+          <li>ফ্রি শিপিং — ৫০০ টাকার উপরে অর্ডারে</li>
+          <li>সাবস্ক্রিপশনে ২০% সাশ্রয়</li>
+          <li>সিজনাল ফ্ল্যাশ সেল ও বান্ডেল অফার</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>📈 ফিনান্সিয়াল প্রজেকশন</h3>
+        <ul>
+          <li><strong>মাস ১-৩:</strong> টেস্টিং ও ব্র্যান্ড বিল্ডিং পর্যায়</li>
+          <li><strong>মাস ৪-৬:</strong> প্রতিদিন ১০-২০টি অর্ডার লক্ষ্যমাত্রা</li>
+          <li><strong>মাস ৭-১২:</strong> প্রতিদিন ৫০+ অর্ডার ও ব্রেক-ইভেন</li>
+          <li><strong>বছর ২:</strong> লাভজনক অপারেশন ও নতুন পণ্য যোগ</li>
+          <li><strong>বছর ৩:</strong> পূর্ণ স্কেল ও টিম এক্সপান্ড</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. ROADMAP -->
+  <section class="section" id="roadmap">
+    <div class="section-number">সেকশন ০৮</div>
+    <h2 class="section-title">বাস্তবায়ন রোডম্যাপ</h2>
+    <p class="section-intro">
+      প্রজেক্টটি তিনটি প্রধান ফেজে বাস্তবায়িত হবে। প্রতিটি ফেজে সুনির্দিষ্ট লক্ষ্যমাত্রা নির্ধারণ করা হয়েছে।
+    </p>
+
+    <div class="roadmap">
+      <div class="roadmap-item">
+        <div class="roadmap-dot">১</div>
+        <div class="phase-tag">মাস ১–২ · প্রস্তুতি</div>
+        <h3>ফাউন্ডেশন ও রিসার্চ</h3>
+        <p>মার্কেট রিসার্চ, সাপ্লায়ার চুক্তি, বিজনেস রেজিস্ট্রেশন (ট্রেড লাইসেন্স), ব্র্যান্ড নাম ও লোগো তৈরি, ডোমেইন রেজিস্ট্রেশন এবং প্রাথমিক স্টক সংগ্রহ।</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot">২</div>
+        <div class="phase-tag">মাস ৩–৪ · নির্মাণ</div>
+        <h3>ওয়েবসাইট ডেভেলপমেন্ট</h3>
+        <p>ই-কমার্স ওয়েবসাইট তৈরি, পেমেন্ট গেটওয়ে ইন্টিগ্রেশন, পণ্যের ছবি তোলা ও কন্টেন্ট তৈরি, কুরিয়ার সার্ভিসের সাথে চুক্তি এবং সোশ্যাল মিডিয়া পেজ তৈরি।</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot">৩</div>
+        <div class="phase-tag">মাস ৫–৬ · লঞ্চ</div>
+        <h3>সফট লঞ্চ ও টেস্টিং</h3>
+        <p>বন্ধু ও পরিচিতদের কাছে বিক্রয় শুরু, ফিডব্যাক সংগ্রহ, ডেলিভারি প্রসেস পরিমার্জন, প্রথম পেইড মার্কেটিং ক্যাম্পেইন এবং রিভিউ সংগ্রহ শুরু।</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot">৪</div>
+        <div class="phase-tag">মাস ৭–১২ · গ্রোথ</div>
+        <h3>স্কেলিং ও অপ্টিমাইজেশন</h3>
+        <p>ফেসবুক/ইনস্টাগ্রাম বিজ্ঞাপন বাড়ানো, নতুন সিজনাল পণ্য যোগ (খেজুর, বাদাম), পাইকারি বিক্রয় শুরু, কাস্টমার সার্ভিস টিম তৈরি এবং মাসিক অর্ডার ৫০০+ লক্ষ্যমাত্রা।</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot">৫</div>
+        <div class="phase-tag">বছর ২+ · সম্প্রসারণ</div>
+        <h3>ফুল স্কেল অপারেশন</h3>
+        <p>মোবাইল অ্যাপ লঞ্চ, মশলা ও অন্যান্য পণ্য যোগ, নিজস্ব ওয়্যারহাউস সেটআপ, ফ্র্যাঞ্চাইজি বা পিকআপ পয়েন্ট নেটওয়ার্ক এবং প্রবাসীদের জন্য শিপিং।</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. RISKS -->
+  <section class="section" id="risks">
+    <div class="section-number">সেকশন ০৯</div>
+    <h2 class="section-title">ঝুঁকি বিশ্লেষণ ও প্রশমন</h2>
+    <p class="section-intro">
+      যেকোনো বিজনেসে ঝুঁকি থাকে। আমরা আগে থেকেই সম্ভাব্য ঝুঁকি চিহ্নিত করে সেগুলোর সমাধানের পরিকল্পনা করেছি।
+    </p>
+
+    <table class="risk-table">
+      <thead>
+        <tr>
+          <th>ঝুঁকি</th>
+          <th>মাত্রা</th>
+          <th>প্রশমনের উপায়</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>পণ্যের গুণমান বজায় রাখা কঠিন হতে পারে</td>
+          <td><span class="risk-level high">উচ্চ</span></td>
+          <td>নির্দিষ্ট সাপ্লায়ার, মান নিয়ন্ত্রণ প্রক্রিয়া ও খাদ্য পরীক্ষা নিশ্চিত করা</td>
+        </tr>
+        <tr>
+          <td>ডেলিভারিতে দেরি বা পণ্য নষ্ট হওয়া</td>
+          <td><span class="risk-level high">উচ্চ</span></td>
+          <td>একাধিক কুরিয়ার পার্টনার ও ভালো প্যাকেজিং ব্যবহার</td>
+        </tr>
+        <tr>
+          <td>প্রতিযোগিতা বাড়তে পারে</td>
+          <td><span class="risk-level medium">মধ্যম</span></td>
+          <td>ব্র্যান্ড লয়্যালটি ও ইউনিক পণ্য অফারিং দিয়ে এগিয়ে থাকা</td>
+        </tr>
+        <tr>
+          <td>পেমেন্ট ফেইলিউর ও ফ্রড</td>
+          <td><span class="risk-level medium">মধ্যম</span></td>
+          <td>নিরাপদ পেমেন্ট গেটওয়ে ব্যবহার ও ক্যাশ অন ডেলিভারি অপশন রাখা</td>
+        </tr>
+        <tr>
+          <td>সিজনাল চাহিদার ওঠানামা</td>
+          <td><span class="risk-level medium">মধ্যম</span></td>
+          <td>অফ-সিজনে ডিসকাউন্ট অফার ও স্টক ম্যানেজমেন্ট</td>
+        </tr>
+        <tr>
+          <td>প্রযুক্তিগত সমস্যা ও ওয়েবসাইট ডাউনটাইম</td>
+          <td><span class="risk-level low">কম</span></td>
+          <td>নির্ভরযোগ্য হোস্টিং ও নিয়মিত ব্যাকআপ নেওয়া</td>
+        </tr>
+        <tr>
+          <td>নেগেটিভ রিভিউ ও পাবলিক রিলেশন ইস্যু</td>
+          <td><span class="risk-level low">কম</span></td>
+          <td>দ্রুত কাস্টমার সার্ভিস ও রিফান্ড পলিসি</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 10. KPIs -->
+  <section class="section" id="kpi">
+    <div class="section-number">সেকশন ১০</div>
+    <h2 class="section-title">সাফল্যের মানদণ্ড (KPI)</h2>
+    <p class="section-intro">
+      প্রজেক্টের সাফল্য পরিমাপের জন্য নিম্নলিখিত মূল সূচকগুলো নির্ধারণ করা হয়েছে। প্রতি মাসে এগুলো রিভিউ করা হবে।
+    </p>
+
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div class="kpi-icon">📦</div>
+        <div class="kpi-value">৫০+</div>
+        <div class="kpi-label">প্রতিদিন অর্ডার (বছর ১ শেষে)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">⭐</div>
+        <div class="kpi-value">৪.৫+</div>
+        <div class="kpi-label">গড় কাস্টমার রেটিং (৫-এর মধ্যে)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🔁</div>
+        <div class="kpi-value">৩০%</div>
+        <div class="kpi-label">রিপিট কাস্টমার রেট</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🚚</div>
+        <div class="kpi-value">৯৫%</div>
+        <div class="kpi-label">সময়মতো ডেলিভারি হার</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">📱</div>
+        <div class="kpi-value">১০,০০০</div>
+        <div class="kpi-label">ফেসবুক ফলোয়ার (৬ মাসে)</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="info-card">
+        <h3>✅ সাফল্যের সংজ্ঞা</h3>
+        <ul>
+          <li>ব্রেক-ইভেন পয়েন্টে পৌঁছানো বছর ১-এর মধ্যে</li>
+          <li>কমপক্ষে ৩টি বিভাগীয় শহরে ডেলিভারি নেটওয়ার্ক</li>
+          <li>১০০+ ইতিবাচক পাবলিক রিভিউ</li>
+          <li>নিয়মিত মিডিয়া কভারেজ বা ইনফ্লুয়েন্সার ফিচার</li>
+          <li>পণ্যের গুণমান নিয়ে শূন্য মেজর কমপ্লেইন্ট</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>📊 মনিটরিং টুলস</h3>
+        <ul>
+          <li>গুগল অ্যানালিটিক্স — ওয়েবসাইট ট্র্যাফিক</li>
+          <li>ফেসবুক ইনসাইটস — সোশ্যাল মিডিয়া পারফরম্যান্স</li>
+          <li>কাস্টম ড্যাশবোর্ড — অর্ডার ও রেভিনিউ</li>
+          <li>হোয়াটসঅ্যাপ ও মোবাইল বার্তা — কাস্টমার ফিডব্যাক</li>
+          <li>মাসিক টিম রিভিউ মিটিং</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>আচার ও শুঁটকি — অনলাইন বিজনেস BRD</strong><br>
+  ভার্সন ১.০ · মার্চ ২০২৬ · এই ডকুমেন্টটি গোপনীয়
+</div>
+
+</body>
+</html>
